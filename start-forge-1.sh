@@ -40,7 +40,7 @@ pip install \
 
 echo "### Installing Extensions ###"
 EXT_DIR="/workspace/sd-webui-forge-classic/extensions"
-mkdir -p "$EXT_DIR"
+#mkdir -p "$EXT_DIR"
 cd "$EXT_DIR"
 
 # Adetailer
@@ -60,7 +60,7 @@ cd "$EXT_DIR"
 
 echo "### Installing Checkpoints (Models) ###"
 MODEL_DIR="/workspace/sd-webui-forge-classic/models/Stable-diffusion"
-mkdir -p "$MODEL_DIR"
+# mkdir -p "$MODEL_DIR"
 cd "$MODEL_DIR"
 
 # Civitai Token
@@ -73,13 +73,13 @@ wget -O sdxl-1.safetensors "https://civitai.com/api/download/models/1569593?toke
 
 echo "### Installing Upscalers ###"
 ESRGAN_DIR="/workspace/sd-webui-forge-classic/models/ESRGAN"
-mkdir -p "$ESRGAN_DIR"
+# mkdir -p "$ESRGAN_DIR"
 cd "$ESRGAN_DIR"
 wget --content-disposition https://huggingface.co/uwg/upscaler/resolve/main/ESRGAN/4x_NickelbackFS_72000_G.pth
 
 echo "### Installing Embeddings ###"
 EMBED_DIR="/workspace/sd-webui-forge-classic/models/embeddings"
-mkdir -p "$EMBED_DIR"
+# mkdir -p "$EMBED_DIR"
 cd "$EMBED_DIR"
 wget --content-disposition "https://civitai.com/api/download/models/1833199?token=$TOKEN" # loliblocker
 wget --content-disposition "https://civitai.com/api/download/models/1473187?token=$TOKEN" # ponyup
@@ -87,7 +87,7 @@ wget --content-disposition "https://civitai.com/api/download/models/1473204?toke
 
 echo "### Installing LoRAs ###"
 LORA_DIR="/workspace/sd-webui-forge-classic/models/Lora"
-mkdir -p "$LORA_DIR"
+# mkdir -p "$LORA_DIR"
 cd "$LORA_DIR"
 
 # General/Utility LoRAs
