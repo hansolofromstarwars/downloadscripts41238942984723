@@ -46,7 +46,7 @@ cd "$EXT_DIR"
 # Adetailer
 git clone https://github.com/Bing-su/adetailer.git
 cd adetailer
-pip install -r requirements.txt
+# pip install -r requirements.txt
 cd "$EXT_DIR"
 
 # Reactor
