@@ -4,6 +4,25 @@
 
 echo "Starting download of model files..."
 
+# Array to store failed downloads
+FAILED_DOWNLOADS=()
+
+# Function to download file and track failures
+download_file() {
+    local filename="$1"
+    local url="$2"
+    
+    wget -O "$filename" "$url"
+    if [ $? -eq 0 ]; then
+        echo "✓ $filename downloaded successfully"
+        return 0
+    else
+        echo "✗ Failed to download $filename"
+        FAILED_DOWNLOADS+=("$filename")
+        return 1
+    fi
+}
+
 # Check if unzip is installed, if not install it
 if ! command -v unzip &> /dev/null; then
     echo "unzip not found, installing..."
@@ -29,7 +48,7 @@ if [ $? -eq 0 ]; then
     echo "✓ titjob-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download titjob-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("titjob-high.safetensors")
 fi
 
 echo "Downloading titjob-low.safetensors..."
@@ -38,7 +57,7 @@ if [ $? -eq 0 ]; then
     echo "✓ titjob-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download titjob-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("titjob-low.safetensors")
 fi
 
 echo "Downloading boobs loras..."
@@ -48,7 +67,7 @@ if [ $? -eq 0 ]; then
     echo "✓ boobs-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download boobs-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("boobs-high.safetensors")
 fi
 
 echo "Downloading boobs-low.safetensors..."
@@ -57,7 +76,7 @@ if [ $? -eq 0 ]; then
     echo "✓ boobs-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download boobs-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("boobs-low.safetensors")
 fi
 
 echo "Downloading deepthroat loras..."
@@ -67,7 +86,7 @@ if [ $? -eq 0 ]; then
     echo "✓ deepthroat-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download deepthroat-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("deepthroat-high.safetensors")
 fi
 
 echo "Downloading deepthroat-low.safetensors..."
@@ -76,7 +95,7 @@ if [ $? -eq 0 ]; then
     echo "✓ deepthroat-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download deepthroat-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("deepthroat-low.safetensors")
 fi
 
 echo "Downloading sideviewmissionary loras..."
@@ -87,7 +106,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sideviewmissionary-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sideviewmissionary-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sideviewmissionary-high.safetensors")
 fi
 
 echo "Downloading sideviewmissionary-low.safetensors..."
@@ -97,7 +116,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sideviewmissionary-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sideviewmissionary-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sideviewmissionary-low.safetensors")
 fi
 
 echo "Downloading femalemasturbation loras..."
@@ -107,7 +126,7 @@ if [ $? -eq 0 ]; then
     echo "✓ femalemasturbation-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download femalemasturbation-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("femalemasturbation-high.safetensors")
 fi
 
 echo "Downloading femalemasturbation-low.safetensors..."
@@ -116,7 +135,7 @@ if [ $? -eq 0 ]; then
     echo "✓ femalemasturbation-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download femalemasturbation-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("femalemasturbation-low.safetensors")
 fi
 
 echo "Downloading handjob loras..."
@@ -126,7 +145,7 @@ if [ $? -eq 0 ]; then
     echo "✓ handjob-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download handjob-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("handjob-high.safetensors")
 fi
 
 echo "Downloading handjob-low.safetensors..."
@@ -135,7 +154,7 @@ if [ $? -eq 0 ]; then
     echo "✓ handjob-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download handjob-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("handjob-low.safetensors")
 fi
 
 echo "Downloading fullnelson loras..."
@@ -145,7 +164,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fullnelson-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fullnelson-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fullnelson-high.safetensors")
 fi
 
 echo "Downloading fullnelson-low.safetensors..."
@@ -154,7 +173,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fullnelson-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fullnelson-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fullnelson-low.safetensors")
 fi
 
 echo "Downloading lickingbreasts loras..."
@@ -164,7 +183,7 @@ if [ $? -eq 0 ]; then
     echo "✓ lickingbreasts-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download lickingbreasts-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("lickingbreasts-high.safetensors")
 fi
 
 echo "Downloading lickingbreasts-low.safetensors..."
@@ -173,7 +192,7 @@ if [ $? -eq 0 ]; then
     echo "✓ lickingbreasts-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download lickingbreasts-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("lickingbreasts-low.safetensors")
 fi
 
 echo "Downloading sloppyfacefuck loras..."
@@ -183,7 +202,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sloppyfacefuck-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sloppyfacefuck-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sloppyfacefuck-high.safetensors")
 fi
 
 echo "Downloading sloppyfacefuck-low.safetensors..."
@@ -192,7 +211,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sloppyfacefuck-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sloppyfacefuck-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sloppyfacefuck-low.safetensors")
 fi
 
 echo "Downloading cowgirl loras..."
@@ -202,7 +221,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cowgirl-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cowgirl-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cowgirl-high.safetensors")
 fi
 
 echo "Downloading cowgirl-low.safetensors..."
@@ -211,7 +230,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cowgirl-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cowgirl-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cowgirl-low.safetensors")
 fi
 
 echo "Downloading sideviewcowgirl loras..."
@@ -221,7 +240,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sideviewcowgirl-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sideviewcowgirl-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sideviewcowgirl-high.safetensors")
 fi
 
 echo "Downloading sideviewcowgirl-low.safetensors..."
@@ -230,7 +249,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sideviewcowgirl-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sideviewcowgirl-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sideviewcowgirl-low.safetensors")
 fi
 
 echo "Downloading spooning loras..."
@@ -240,7 +259,7 @@ if [ $? -eq 0 ]; then
     echo "✓ spooning-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download spooning-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("spooning-high.safetensors")
 fi
 
 echo "Downloading spooning-low.safetensors..."
@@ -249,7 +268,7 @@ if [ $? -eq 0 ]; then
     echo "✓ spooning-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download spooning-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("spooning-low.safetensors")
 fi
 
 echo "Downloading twerk loras..."
@@ -259,7 +278,7 @@ if [ $? -eq 0 ]; then
     echo "✓ twerk-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download twerk-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("twerk-high.safetensors")
 fi
 
 echo "Downloading twerk-low.safetensors..."
@@ -268,7 +287,7 @@ if [ $? -eq 0 ]; then
     echo "✓ twerk-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download twerk-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("twerk-low.safetensors")
 fi
 
 echo "Downloading futamasturbation loras..."
@@ -278,7 +297,7 @@ if [ $? -eq 0 ]; then
     echo "✓ futamasturbation-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download futamasturbation-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("futamasturbation-high.safetensors")
 fi
 
 echo "Downloading futamasturbation-low.safetensors..."
@@ -287,7 +306,7 @@ if [ $? -eq 0 ]; then
     echo "✓ futamasturbation-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download futamasturbation-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("futamasturbation-low.safetensors")
 fi
 
 echo "Downloading ahegao loras..."
@@ -297,7 +316,7 @@ if [ $? -eq 0 ]; then
     echo "✓ ahegao-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download ahegao-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("ahegao-high.safetensors")
 fi
 
 echo "Downloading ahegao-low.safetensors..."
@@ -306,7 +325,7 @@ if [ $? -eq 0 ]; then
     echo "✓ ahegao-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download ahegao-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("ahegao-low.safetensors")
 fi
 
 echo "Downloading doggystyle loras..."
@@ -316,7 +335,7 @@ if [ $? -eq 0 ]; then
     echo "✓ doggystyle-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download doggystyle-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("doggystyle-high.safetensors")
 fi
 
 echo "Downloading doggystyle-low.safetensors..."
@@ -325,7 +344,7 @@ if [ $? -eq 0 ]; then
     echo "✓ doggystyle-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download doggystyle-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("doggystyle-low.safetensors")
 fi
 
 echo "Downloading sideviewdoggystyle loras..."
@@ -335,7 +354,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sideviewdoggystyle-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sideviewdoggystyle-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sideviewdoggystyle-high.safetensors")
 fi
 
 echo "Downloading sideviewdoggystyle-low.safetensors..."
@@ -344,7 +363,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sideviewdoggystyle-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sideviewdoggystyle-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sideviewdoggystyle-low.safetensors")
 fi
 
 echo "Downloading frontviewdoggystyle loras..."
@@ -354,7 +373,7 @@ if [ $? -eq 0 ]; then
     echo "✓ frontviewdoggystyle-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download frontviewdoggystyle-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("frontviewdoggystyle-high.safetensors")
 fi
 
 echo "Downloading frontviewdoggystyle-low.safetensors..."
@@ -363,7 +382,7 @@ if [ $? -eq 0 ]; then
     echo "✓ frontviewdoggystyle-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download frontviewdoggystyle-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("frontviewdoggystyle-low.safetensors")
 fi
 
 echo "Downloading bouncywalk loras..."
@@ -373,7 +392,7 @@ if [ $? -eq 0 ]; then
     echo "✓ bouncywalk-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download bouncywalk-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("bouncywalk-high.safetensors")
 fi
 
 echo "Downloading bouncywalk-low.safetensors..."
@@ -382,7 +401,7 @@ if [ $? -eq 0 ]; then
     echo "✓ bouncywalk-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download bouncywalk-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("bouncywalk-low.safetensors")
 fi
 
 echo "Downloading afterhandjobcumshot loras..."
@@ -392,7 +411,7 @@ if [ $? -eq 0 ]; then
     echo "✓ afterhandjobcumshot-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download afterhandjobcumshot-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("afterhandjobcumshot-high.safetensors")
 fi
 
 echo "Downloading afterhandjobcumshot-low.safetensors..."
@@ -401,7 +420,7 @@ if [ $? -eq 0 ]; then
     echo "✓ afterhandjobcumshot-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download afterhandjobcumshot-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("afterhandjobcumshot-low.safetensors")
 fi
 
 echo "Downloading malemasturbation loras..."
@@ -411,7 +430,7 @@ if [ $? -eq 0 ]; then
     echo "✓ malemasturbation-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download malemasturbation-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("malemasturbation-high.safetensors")
 fi
 
 echo "Downloading malemasturbation-low.safetensors..."
@@ -420,7 +439,7 @@ if [ $? -eq 0 ]; then
     echo "✓ malemasturbation-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download malemasturbation-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("malemasturbation-low.safetensors")
 fi
 
 echo "Downloading cunnilingus loras..."
@@ -430,7 +449,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cunnilingus-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cunnilingus-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cunnilingus-high.safetensors")
 fi
 
 echo "Downloading cunnilingus-low.safetensors..."
@@ -439,7 +458,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cunnilingus-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cunnilingus-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cunnilingus-low.safetensors")
 fi
 
 echo "Downloading footjob loras..."
@@ -449,7 +468,7 @@ if [ $? -eq 0 ]; then
     echo "✓ footjob-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download footjob-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("footjob-high.safetensors")
 fi
 
 echo "Downloading footjob-low.safetensors..."
@@ -458,7 +477,7 @@ if [ $? -eq 0 ]; then
     echo "✓ footjob-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download footjob-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("footjob-low.safetensors")
 fi
 
 echo "Downloading bathfun loras..."
@@ -468,7 +487,7 @@ if [ $? -eq 0 ]; then
     echo "✓ bathfun-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download bathfun-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("bathfun-high.safetensors")
 fi
 
 echo "Downloading bathfun-low.safetensors..."
@@ -477,7 +496,7 @@ if [ $? -eq 0 ]; then
     echo "✓ bathfun-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download bathfun-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("bathfun-low.safetensors")
 fi
 
 echo "Downloading ballssuckinghandjob loras..."
@@ -487,7 +506,7 @@ if [ $? -eq 0 ]; then
     echo "✓ ballssuckinghandjob-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download ballssuckinghandjob-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("ballssuckinghandjob-high.safetensors")
 fi
 
 echo "Downloading ballssuckinghandjob-low.safetensors..."
@@ -496,7 +515,7 @@ if [ $? -eq 0 ]; then
     echo "✓ ballssuckinghandjob-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download ballssuckinghandjob-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("ballssuckinghandjob-low.safetensors")
 fi
 
 echo "Downloading analmissionary loras..."
@@ -506,7 +525,7 @@ if [ $? -eq 0 ]; then
     echo "✓ analmissionary-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download analmissionary-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("analmissionary-high.safetensors")
 fi
 
 echo "Downloading analmissionary-low.safetensors..."
@@ -515,7 +534,7 @@ if [ $? -eq 0 ]; then
     echo "✓ analmissionary-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download analmissionary-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("analmissionary-low.safetensors")
 fi
 
 echo "Downloading dildomachine loras..."
@@ -525,7 +544,7 @@ if [ $? -eq 0 ]; then
     echo "✓ dildomachine-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download dildomachine-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("dildomachine-high.safetensors")
 fi
 
 echo "Downloading dildomachine-low.safetensors..."
@@ -534,7 +553,7 @@ if [ $? -eq 0 ]; then
     echo "✓ dildomachine-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download dildomachine-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("dildomachine-low.safetensors")
 fi
 
 echo "Downloading cuminmouth loras..."
@@ -544,7 +563,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cuminmouth-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cuminmouth-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cuminmouth-high.safetensors")
 fi
 
 echo "Downloading cuminmouth-low.safetensors..."
@@ -553,7 +572,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cuminmouth-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cuminmouth-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cuminmouth-low.safetensors")
 fi
 
 echo "Downloading doublecuminmouth loras..."
@@ -563,7 +582,7 @@ if [ $? -eq 0 ]; then
     echo "✓ doublecuminmouth-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download doublecuminmouth-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("doublecuminmouth-high.safetensors")
 fi
 
 echo "Downloading doublecuminmouth-low.safetensors..."
@@ -572,7 +591,7 @@ if [ $? -eq 0 ]; then
     echo "✓ doublecuminmouth-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download doublecuminmouth-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("doublecuminmouth-low.safetensors")
 fi
 
 echo "Downloading flashingboobs loras..."
@@ -582,7 +601,7 @@ if [ $? -eq 0 ]; then
     echo "✓ flashingboobs-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download flashingboobs-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("flashingboobs-high.safetensors")
 fi
 
 echo "Downloading flashingboobs-low.safetensors..."
@@ -591,7 +610,7 @@ if [ $? -eq 0 ]; then
     echo "✓ flashingboobs-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download flashingboobs-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("flashingboobs-low.safetensors")
 fi
 
 echo "Downloading breastsqueezeandlact loras..."
@@ -601,7 +620,7 @@ if [ $? -eq 0 ]; then
     echo "✓ breastsqueezeandlact-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download breastsqueezeandlact-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("breastsqueezeandlact-high.safetensors")
 fi
 
 echo "Downloading breastsqueezeandlact-low.safetensors..."
@@ -610,7 +629,7 @@ if [ $? -eq 0 ]; then
     echo "✓ breastsqueezeandlact-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download breastsqueezeandlact-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("breastsqueezeandlact-low.safetensors")
 fi
 
 echo "Downloading fondledboobs loras..."
@@ -620,7 +639,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fondledboobs-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fondledboobs-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fondledboobs-high.safetensors")
 fi
 
 echo "Downloading fondledboobs-low.safetensors..."
@@ -629,7 +648,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fondledboobs-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fondledboobs-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fondledboobs-low.safetensors")
 fi
 
 echo "Downloading facesitting loras..."
@@ -639,7 +658,7 @@ if [ $? -eq 0 ]; then
     echo "✓ facesitting-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download facesitting-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("facesitting-high.safetensors")
 fi
 
 echo "Downloading facesitting-low.safetensors..."
@@ -648,7 +667,7 @@ if [ $? -eq 0 ]; then
     echo "✓ facesitting-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download facesitting-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("facesitting-low.safetensors")
 fi
 
 echo "Downloading sexsmashcut loras..."
@@ -658,7 +677,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sexsmashcut-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sexsmashcut-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sexsmashcut-high.safetensors")
 fi
 
 echo "Downloading sexsmashcut-low.safetensors..."
@@ -667,7 +686,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sexsmashcut-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sexsmashcut-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sexsmashcut-low.safetensors")
 fi
 
 echo "Downloading and extracting oralinsertion loras..."
@@ -677,7 +696,7 @@ if [ $? -eq 0 ]; then
     echo "✓ oralinsertion archive downloaded successfully"
 else
     echo "✗ Failed to download oralinsertion archive"
-    exit 1
+    FAILED_DOWNLOADS+=("oralinsertion archive")
 fi
 
 echo "Extracting oralinsertion archive..."
@@ -686,7 +705,7 @@ if [ $? -eq 0 ]; then
     echo "✓ oralinsertion archive extracted successfully"
 else
     echo "✗ Failed to extract oralinsertion archive"
-    exit 1
+    FAILED_DOWNLOADS+=("$(echo "$0" | grep -oP '(?<=download )[^"]*(?=")')") 
 fi
 
 echo "Renaming oralinsertion files..."
@@ -716,7 +735,7 @@ if [ $? -eq 0 ]; then
     echo "✓ povinsertion-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download povinsertion-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("povinsertion-high.safetensors")
 fi
 
 echo "Downloading povinsertion-low.safetensors..."
@@ -725,7 +744,7 @@ if [ $? -eq 0 ]; then
     echo "✓ povinsertion-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download povinsertion-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("povinsertion-low.safetensors")
 fi
 
 echo "Downloading giantgirls loras..."
@@ -735,7 +754,7 @@ if [ $? -eq 0 ]; then
     echo "✓ giantgirls-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download giantgirls-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("giantgirls-high.safetensors")
 fi
 
 echo "Downloading giantgirls-low.safetensors..."
@@ -744,7 +763,7 @@ if [ $? -eq 0 ]; then
     echo "✓ giantgirls-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download giantgirls-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("giantgirls-low.safetensors")
 fi
 
 echo "Downloading gropingmassagebreasts loras..."
@@ -754,7 +773,7 @@ if [ $? -eq 0 ]; then
     echo "✓ gropingmassagebreasts-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download gropingmassagebreasts-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("gropingmassagebreasts-high.safetensors")
 fi
 
 echo "Downloading gropingmassagebreasts-low.safetensors..."
@@ -763,7 +782,7 @@ if [ $? -eq 0 ]; then
     echo "✓ gropingmassagebreasts-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download gropingmassagebreasts-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("gropingmassagebreasts-low.safetensors")
 fi
 
 echo "Downloading breastpumping loras..."
@@ -773,7 +792,7 @@ if [ $? -eq 0 ]; then
     echo "✓ breastpumping-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download breastpumping-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("breastpumping-high.safetensors")
 fi
 
 echo "Downloading breastpumping-low.safetensors..."
@@ -782,7 +801,7 @@ if [ $? -eq 0 ]; then
     echo "✓ breastpumping-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download breastpumping-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("breastpumping-low.safetensors")
 fi
 
 echo "Downloading bodycumshot loras..."
@@ -792,7 +811,7 @@ if [ $? -eq 0 ]; then
     echo "✓ bodycumshot-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download bodycumshot-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("bodycumshot-high.safetensors")
 fi
 
 echo "Downloading bodycumshot-low.safetensors..."
@@ -801,7 +820,7 @@ if [ $? -eq 0 ]; then
     echo "✓ bodycumshot-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download bodycumshot-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("bodycumshot-low.safetensors")
 fi
 
 echo "Downloading lotusposition loras..."
@@ -811,7 +830,7 @@ if [ $? -eq 0 ]; then
     echo "✓ lotusposition-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download lotusposition-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("lotusposition-high.safetensors")
 fi
 
 echo "Downloading lotusposition-low.safetensors..."
@@ -820,7 +839,7 @@ if [ $? -eq 0 ]; then
     echo "✓ lotusposition-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download lotusposition-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("lotusposition-low.safetensors")
 fi
 
 echo "Downloading analinsertion loras..."
@@ -830,7 +849,7 @@ if [ $? -eq 0 ]; then
     echo "✓ analinsertion-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download analinsertion-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("analinsertion-high.safetensors")
 fi
 
 echo "Downloading analinsertion-low.safetensors..."
@@ -839,7 +858,7 @@ if [ $? -eq 0 ]; then
     echo "✓ analinsertion-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download analinsertion-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("analinsertion-low.safetensors")
 fi
 
 echo "Downloading footfocusmassionary loras..."
@@ -849,7 +868,7 @@ if [ $? -eq 0 ]; then
     echo "✓ footfocusmassionary-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download footfocusmassionary-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("footfocusmassionary-high.safetensors")
 fi
 
 echo "Downloading footfocusmassionary-low.safetensors..."
@@ -858,7 +877,7 @@ if [ $? -eq 0 ]; then
     echo "✓ footfocusmassionary-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download footfocusmassionary-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("footfocusmassionary-low.safetensors")
 fi
 
 echo "Downloading orgymissionary loras..."
@@ -868,7 +887,7 @@ if [ $? -eq 0 ]; then
     echo "✓ orgymissionary-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download orgymissionary-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("orgymissionary-high.safetensors")
 fi
 
 echo "Downloading orgymissionary-low.safetensors..."
@@ -877,7 +896,7 @@ if [ $? -eq 0 ]; then
     echo "✓ orgymissionary-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download orgymissionary-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("orgymissionary-low.safetensors")
 fi
 
 echo "Downloading lesbiananalingus loras..."
@@ -887,7 +906,7 @@ if [ $? -eq 0 ]; then
     echo "✓ lesbiananalingus-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download lesbiananalingus-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("lesbiananalingus-high.safetensors")
 fi
 
 echo "Downloading lesbiananalingus-low.safetensors..."
@@ -896,7 +915,7 @@ if [ $? -eq 0 ]; then
     echo "✓ lesbiananalingus-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download lesbiananalingus-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("lesbiananalingus-low.safetensors")
 fi
 
 echo "Downloading twofingerssquirting loras..."
@@ -906,7 +925,7 @@ if [ $? -eq 0 ]; then
     echo "✓ twofingerssquirting-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download twofingerssquirting-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("twofingerssquirting-high.safetensors")
 fi
 
 echo "Downloading twofingerssquirting-low.safetensors..."
@@ -915,7 +934,7 @@ if [ $? -eq 0 ]; then
     echo "✓ twofingerssquirting-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download twofingerssquirting-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("twofingerssquirting-low.safetensors")
 fi
 
 echo "Downloading fingeringpussy loras..."
@@ -925,7 +944,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fingeringpussy-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fingeringpussy-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fingeringpussy-high.safetensors")
 fi
 
 echo "Downloading fingeringpussy-low.safetensors..."
@@ -934,7 +953,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fingeringpussy-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fingeringpussy-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fingeringpussy-low.safetensors")
 fi
 
 echo "Downloading femaleejaculationsquirt loras..."
@@ -944,7 +963,7 @@ if [ $? -eq 0 ]; then
     echo "✓ femaleejaculationsquirt-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download femaleejaculationsquirt-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("femaleejaculationsquirt-high.safetensors")
 fi
 
 echo "Downloading femaleejaculationsquirt-low.safetensors..."
@@ -953,7 +972,7 @@ if [ $? -eq 0 ]; then
     echo "✓ femaleejaculationsquirt-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download femaleejaculationsquirt-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("femaleejaculationsquirt-low.safetensors")
 fi
 
 echo "Downloading buttslapping loras..."
@@ -963,7 +982,7 @@ if [ $? -eq 0 ]; then
     echo "✓ buttslapping-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download buttslapping-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("buttslapping-high.safetensors")
 fi
 
 echo "Downloading buttslapping-low.safetensors..."
@@ -972,7 +991,7 @@ if [ $? -eq 0 ]; then
     echo "✓ buttslapping-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download buttslapping-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("buttslapping-low.safetensors")
 fi
 
 echo "Downloading assstretch loras..."
@@ -982,7 +1001,7 @@ if [ $? -eq 0 ]; then
     echo "✓ assstretch-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download assstretch-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("assstretch-high.safetensors")
 fi
 
 echo "Downloading assstretch-low.safetensors..."
@@ -991,7 +1010,7 @@ if [ $? -eq 0 ]; then
     echo "✓ assstretch-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download assstretch-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("assstretch-low.safetensors")
 fi
 
 echo "Downloading kissingpassionatelylesbi loras..."
@@ -1001,7 +1020,7 @@ if [ $? -eq 0 ]; then
     echo "✓ kissingpassionatelylesbi-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download kissingpassionatelylesbi-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("kissingpassionatelylesbi-high.safetensors")
 fi
 
 echo "Downloading kissingpassionatelylesbi-low.safetensors..."
@@ -1010,7 +1029,7 @@ if [ $? -eq 0 ]; then
     echo "✓ kissingpassionatelylesbi-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download kissingpassionatelylesbi-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("kissingpassionatelylesbi-low.safetensors")
 fi
 
 echo "Downloading doublepenetration loras..."
@@ -1020,7 +1039,7 @@ if [ $? -eq 0 ]; then
     echo "✓ doublepenetration-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download doublepenetration-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("doublepenetration-high.safetensors")
 fi
 
 echo "Downloading doublepenetration-low.safetensors..."
@@ -1029,7 +1048,7 @@ if [ $? -eq 0 ]; then
     echo "✓ doublepenetration-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download doublepenetration-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("doublepenetration-low.safetensors")
 fi
 
 echo "Downloading cheekfuckinsertion loras..."
@@ -1039,7 +1058,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cheekfuckinsertion-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cheekfuckinsertion-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cheekfuckinsertion-high.safetensors")
 fi
 
 echo "Downloading cheekfuckinsertion-low.safetensors..."
@@ -1048,7 +1067,7 @@ if [ $? -eq 0 ]; then
     echo "✓ cheekfuckinsertion-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download cheekfuckinsertion-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("cheekfuckinsertion-low.safetensors")
 fi
 
 echo "Downloading amazonposition loras..."
@@ -1058,7 +1077,7 @@ if [ $? -eq 0 ]; then
     echo "✓ amazonposition-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download amazonposition-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("amazonposition-high.safetensors")
 fi
 
 echo "Downloading amazonposition-low.safetensors..."
@@ -1067,7 +1086,7 @@ if [ $? -eq 0 ]; then
     echo "✓ amazonposition-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download amazonposition-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("amazonposition-low.safetensors")
 fi
 
 echo "Downloading reversecowgirltrans loras..."
@@ -1077,7 +1096,7 @@ if [ $? -eq 0 ]; then
     echo "✓ reversecowgirltrans-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download reversecowgirltrans-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("reversecowgirltrans-high.safetensors")
 fi
 
 echo "Downloading reversecowgirltrans-low.safetensors..."
@@ -1086,7 +1105,7 @@ if [ $? -eq 0 ]; then
     echo "✓ reversecowgirltrans-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download reversecowgirltrans-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("reversecowgirltrans-low.safetensors")
 fi
 
 echo "Downloading tribadism loras..."
@@ -1096,7 +1115,7 @@ if [ $? -eq 0 ]; then
     echo "✓ tribadism-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download tribadism-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("tribadism-high.safetensors")
 fi
 
 echo "Downloading tribadism-low.safetensors..."
@@ -1105,7 +1124,7 @@ if [ $? -eq 0 ]; then
     echo "✓ tribadism-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download tribadism-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("tribadism-low.safetensors")
 fi
 
 echo "Downloading blowbang loras..."
@@ -1115,7 +1134,7 @@ if [ $? -eq 0 ]; then
     echo "✓ blowbang-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download blowbang-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("blowbang-high.safetensors")
 fi
 
 echo "Downloading blowbang-low.safetensors..."
@@ -1124,7 +1143,7 @@ if [ $? -eq 0 ]; then
     echo "✓ blowbang-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download blowbang-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("blowbang-low.safetensors")
 fi
 
 echo "Downloading selfnipplesucking loras..."
@@ -1134,7 +1153,7 @@ if [ $? -eq 0 ]; then
     echo "✓ selfnipplesucking-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download selfnipplesucking-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("selfnipplesucking-high.safetensors")
 fi
 
 echo "Downloading selfnipplesucking-low.safetensors..."
@@ -1143,7 +1162,7 @@ if [ $? -eq 0 ]; then
     echo "✓ selfnipplesucking-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download selfnipplesucking-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("selfnipplesucking-low.safetensors")
 fi
 
 echo "Downloading fingerlickingsucking loras..."
@@ -1153,7 +1172,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fingerlickingsucking-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fingerlickingsucking-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fingerlickingsucking-high.safetensors")
 fi
 
 echo "Downloading fingerlickingsucking-low.safetensors..."
@@ -1162,7 +1181,7 @@ if [ $? -eq 0 ]; then
     echo "✓ fingerlickingsucking-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download fingerlickingsucking-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("fingerlickingsucking-low.safetensors")
 fi
 
 echo "Downloading sidesplitsstart loras..."
@@ -1172,7 +1191,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sidesplitsstart-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sidesplitsstart-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sidesplitsstart-high.safetensors")
 fi
 
 echo "Downloading sidesplitsstart-low.safetensors..."
@@ -1181,7 +1200,7 @@ if [ $? -eq 0 ]; then
     echo "✓ sidesplitsstart-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download sidesplitsstart-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("sidesplitsstart-low.safetensors")
 fi
 
 echo "Downloading and extracting pussy loras..."
@@ -1191,7 +1210,7 @@ if [ $? -eq 0 ]; then
     echo "✓ pussy archive downloaded successfully"
 else
     echo "✗ Failed to download pussy archive"
-    exit 1
+    FAILED_DOWNLOADS+=("pussy archive")
 fi
 
 echo "Extracting pussy archive..."
@@ -1200,7 +1219,7 @@ if [ $? -eq 0 ]; then
     echo "✓ pussy archive extracted successfully"
 else
     echo "✗ Failed to extract pussy archive"
-    exit 1
+    FAILED_DOWNLOADS+=("$(echo "$0" | grep -oP '(?<=download )[^"]*(?=")')") 
 fi
 
 echo "Renaming pussy files..."
@@ -1229,7 +1248,7 @@ if [ $? -eq 0 ]; then
     echo "✓ thighsex-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download thighsex-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("thighsex-high.safetensors")
 fi
 
 echo "Downloading thighsex-low.safetensors..."
@@ -1238,7 +1257,7 @@ if [ $? -eq 0 ]; then
     echo "✓ thighsex-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download thighsex-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("thighsex-low.safetensors")
 fi
 
 echo "Downloading facedownassup loras..."
@@ -1248,7 +1267,7 @@ if [ $? -eq 0 ]; then
     echo "✓ facedownassup-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download facedownassup-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("facedownassup-high.safetensors")
 fi
 
 echo "Downloading facedownassup-low.safetensors..."
@@ -1257,7 +1276,7 @@ if [ $? -eq 0 ]; then
     echo "✓ facedownassup-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download facedownassup-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("facedownassup-low.safetensors")
 fi
 
 echo "Downloading matingpress loras..."
@@ -1267,7 +1286,7 @@ if [ $? -eq 0 ]; then
     echo "✓ matingpress-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download matingpress-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("matingpress-high.safetensors")
 fi
 
 echo "Downloading matingpress-low.safetensors..."
@@ -1276,7 +1295,7 @@ if [ $? -eq 0 ]; then
     echo "✓ matingpress-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download matingpress-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("matingpress-low.safetensors")
 fi
 
 echo "Downloading flirting loras..."
@@ -1286,7 +1305,7 @@ if [ $? -eq 0 ]; then
     echo "✓ flirting-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download flirting-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("flirting-high.safetensors")
 fi
 
 echo "Downloading flirting-low.safetensors..."
@@ -1295,7 +1314,7 @@ if [ $? -eq 0 ]; then
     echo "✓ flirting-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download flirting-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("flirting-low.safetensors")
 fi
 
 echo "Downloading dancing loras..."
@@ -1305,7 +1324,7 @@ if [ $? -eq 0 ]; then
     echo "✓ dancing-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download dancing-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("dancing-high.safetensors")
 fi
 
 echo "Downloading dancing-low.safetensors..."
@@ -1314,7 +1333,7 @@ if [ $? -eq 0 ]; then
     echo "✓ dancing-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download dancing-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("dancing-low.safetensors")
 fi
 
 echo "Downloading malemasturbationwithoutcum loras..."
@@ -1324,7 +1343,7 @@ if [ $? -eq 0 ]; then
     echo "✓ malemasturbationwithoutcum-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download malemasturbationwithoutcum-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("malemasturbationwithoutcum-high.safetensors")
 fi
 
 echo "Downloading malemasturbationwithoutcum-low.safetensors..."
@@ -1333,7 +1352,7 @@ if [ $? -eq 0 ]; then
     echo "✓ malemasturbationwithoutcum-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download malemasturbationwithoutcum-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("malemasturbationwithoutcum-low.safetensors")
 fi
 
 echo "Downloading outsauce loras..."
@@ -1343,7 +1362,7 @@ if [ $? -eq 0 ]; then
     echo "✓ outsauce-high.safetensors downloaded successfully"
 else
     echo "✗ Failed to download outsauce-high.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("outsauce-high.safetensors")
 fi
 
 echo "Downloading outsauce-low.safetensors..."
@@ -1352,8 +1371,23 @@ if [ $? -eq 0 ]; then
     echo "✓ outsauce-low.safetensors downloaded successfully"
 else
     echo "✗ Failed to download outsauce-low.safetensors"
-    exit 1
+    FAILED_DOWNLOADS+=("outsauce-low.safetensors")
 fi
 
-echo "All files downloaded successfully!"
+echo ""
+echo "========================================="
+echo "Download process completed!"
+echo "========================================="
+
+if [ ${#FAILED_DOWNLOADS[@]} -eq 0 ]; then
+    echo "✓ All files downloaded successfully!"
+else
+    echo "✗ Failed to download ${#FAILED_DOWNLOADS[@]} file(s):"
+    echo ""
+    for file in "${FAILED_DOWNLOADS[@]}"; do
+        echo "  - $file"
+    done
+    echo ""
+    echo "You can try to download these files manually or re-run the script."
+fi
 
